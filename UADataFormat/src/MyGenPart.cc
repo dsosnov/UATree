@@ -21,6 +21,7 @@ void MyGenPart::Reset(){
   mo2    = -1;
   da1    = -1;
   da2    = -1;
+  processID = -1;
 }
 
 void MyGenPart::Print(){
@@ -34,6 +35,7 @@ void MyGenPart::Print(){
 
   cout << "pdgId  : " << this->pdgId <<endl;
   cout << "status : " << this->status <<endl;
+  cout << "processID : " << this->processID <<endl;
   //cout << "name: "<<this->name<<endl;
   
   cout << " mother positions   : " << this->mo1 << " and " << this->mo2 << endl;

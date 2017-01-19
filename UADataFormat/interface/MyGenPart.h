@@ -13,8 +13,9 @@ class MyGenPart : public MyPart {
     virtual void Reset();
     virtual void Print();
 
-    Int_t  pdgId,status,mo1,mo2,da1,da2;
+    Int_t pdgId,status,mo1,mo2,da1,da2;
     //std::string name;
+    Int_t processID;
 
   private:
 

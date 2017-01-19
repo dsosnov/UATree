@@ -1,3 +1,4 @@
+
 // Description: Function to retrieve Generated particles from HEPEVT
 
 // system include files
@@ -9,6 +10,7 @@
 #include "DataFormats/Candidate/interface/CandidateFwd.h"
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
 #include "SimGeneral/HepPDTRecord/interface/ParticleDataTable.h"
+#include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
 
 // UABaseTree Analysis class declaration
 #include "UATree/UABaseTree/interface/UABaseTree.h"
@@ -17,6 +19,10 @@ bool GenPartDebug = false ;
 
 void UABaseTree::GetGenPart(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+  // Handle for access to event info
+  Handle<GenEventInfoProduct> genEvtInfoH;
+  iEvent.getByLabel(hepmc_, genEvtInfoH ) ;
+  int processID = (genEvtInfoH.isValid()) ? genKin.MCProcId = genEvtInfoH->signalProcessID() : 0;
 
   // Clear GenPart List
   // (evt->GenPart).clear();
@@ -94,6 +100,9 @@ void UABaseTree::GetGenPart(const edm::Event& iEvent, const edm::EventSetup& iSe
       if(found != cands.end()) mygenpart.da2 = found - cands.begin() ;
     }
 
+    // Store processID to myGenPart
+    mygenpart.processID = processID;
+    cout << "#GetGenPart: processID = " << processID << endl;
 
     Bool_t store = true;
     if( onlyStableGenPart_  && st!=1)                      store = false;
