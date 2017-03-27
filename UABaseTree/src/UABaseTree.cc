@@ -134,9 +134,21 @@ void UABaseTree::beginJob(){
 
 //-- method called to for each run
 void UABaseTree::beginRun(edm::Run const & iRun, edm::EventSetup const& iSetup){
-  bool changed = true;
   //isValidHltConfig_ = hltConfig.init(iRun,iSetup,"HLT",changed);
-  isValidHltPrescales_ = hltPrescales.init(iRun,iSetup,"HLT",changed);
+
+  //https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideHighLevelTrigger
+  bool changed(true);
+  if (hltConfig_.init(iRun,iSetup,"HLT",changed)) {
+    // if init returns TRUE, initialisation has succeeded!
+    if (changed) {
+    	std::cout << "/n/n changed HLT configuration/n/n" << std::endl;
+    };
+  } else {
+    // if init returns FALSE, initialisation has NOT succeeded, which indicates a problem
+    // with the file and/or code and needs to be investigated!
+    std::cout << "/n/nHLT config extraction failure with process name HLT" << std::endl;
+    // In this case, all access methods will return empty values!
+  }
   if(storeL1Trig_) {
     // JH, 76
     //    L1GtUtils L1GTUtility;

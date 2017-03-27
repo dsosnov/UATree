@@ -1,7 +1,8 @@
 // Trigger Inclides
 #include "DataFormats/HLTReco/interface/TriggerEvent.h"
 #include "DataFormats/Common/interface/TriggerResults.h"
-//#include "HLTrigger/HLTcore/interface/HLTConfigProvider.h"
+#include "HLTrigger/HLTcore/interface/HLTConfigProvider.h"
+
 //#include "FWCore/Framework/interface/TriggerNames.h"
 //#include "FWCore/Common/interface/TriggerNames.h"
 
@@ -42,7 +43,10 @@ void UABaseTree::GetHLTrig(const edm::Event& iEvent, const edm::EventSetup& iSet
       cout << "    " << trigNames.triggerName(i) << endl;  
   }
   
-  HLTConfigProvider const& hltConfig = hltPrescales.hltConfigProvider();
+  //https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideHighLevelTrigger
+  //HLTConfigProvider const& hltConfig = hltPrescales.hltConfigProvider();
+
+
   //-- Loop on triggers requested by user (config file)
   for(vector<string>::iterator hlt_name = hlt_paths_.begin(); hlt_name != hlt_paths_.end(); hlt_name++) {
     HLTrig.HLTmap[*hlt_name]= hasFired(*hlt_name,trigNames,*trigResults);
@@ -52,7 +56,7 @@ void UABaseTree::GetHLTrig(const edm::Event& iEvent, const edm::EventSetup& iSet
 
 
     // stolen from https://cmssdt.cern.ch/SDT/doxygen/CMSSW_8_0_24/doc/html/d2/dc0/HLTEventAnalyzerAOD_8cc_source.html
-    const unsigned int triggerIndex(hltConfig.triggerIndex(*hlt_name));
+    const unsigned int triggerIndex(hltConfig_.triggerIndex(*hlt_name));
     std::cout << "HLT6.1\n";
     //const std::pair<int,int> prescales(hltPrescales.prescaleValues(iEvent,iSetup,*hlt_name));
     //std::cout << "HLT6.2\n";

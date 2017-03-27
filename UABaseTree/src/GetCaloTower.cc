@@ -18,12 +18,7 @@ void UABaseTree::GetCaloTower(const edm::Event& iEvent){
    caloTowers.clear();
 
    Handle<CaloTowerCollection> CaloTowers;
-   try {
-     iEvent.getByLabel(calotowercoll_,CaloTowers);
-   }
-   catch ( ... ) {
-     cout << "[UABaseTree::GetCaloTower] Can't find the collection " << calotowercoll_ << endl;
-   }
+   iEvent.getByLabel(calotowercoll_,CaloTowers);
 
    caloTowers.assign( CaloTowers->size() , MyCaloTower() );
 

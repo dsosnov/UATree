@@ -58,13 +58,9 @@ void UABaseTree::GetAll(const edm::Event& iEvent , const edm::EventSetup& iSetup
   std::cout << "7\n";
   GetAllMETs(iEvent); 
   std::cout << "8\n";
-  GetSiPixelClusters(iEvent, iSetup);
-  GetSiStripClusters(iEvent, iSetup); 
+  //GetSiPixelClusters(iEvent, iSetup);
+  //GetSiStripClusters(iEvent, iSetup);
+  //if(storeCaloObjects_)
+  GetCaloTower(iEvent);
   std::cout << "9\n";
-  //if(storeCaloObjects_) GetCaloTower(iEvent);
-  /*
-  if( (storeFSCInfo_  && fscrechits_.label().size() > 0) ||
-      (storeFSCHits_  && fscrechits_.label().size() > 0) ||
-      (storeFSCDigis_ && fscdigis_.label().size() > 0) ) GetFSCInfo(iEvent,iSetup);
-      */
 }

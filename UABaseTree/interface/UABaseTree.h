@@ -438,7 +438,7 @@ class UABaseTree : public EDAnalyzer {
       // --------------------   Needed For HLT   --------------------
       bool isValidHltConfig_;
       bool isValidHltPrescales_;
-      //HLTConfigProvider hltConfig;
+      HLTConfigProvider hltConfig_;
       HLTPrescaleProvider hltPrescales;
       L1GtUtils L1GTUtility;
 

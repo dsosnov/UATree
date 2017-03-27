@@ -1,4 +1,3 @@
-import os
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("UABaseTree")
@@ -23,15 +22,14 @@ process.MessageLogger.cerr.FwkReport.reportEvery = 1000
 
 process.options = cms.untracked.PSet(
    wantSummary = cms.untracked.bool(True),
-   SkipEvent = cms.untracked.vstring('ProductNotFound')
+   SkipEvent = cms.untracked.vstring('ProductNotFound', 'GetByLabelWithoutRegistration')
 
 )
 
 # Data source -----------------------------------------------------------------------
 process.source = cms.Source("PoolSource",
                             fileNames = cms.untracked.vstring(
-   'file:'+os.environ['HOME']+'/work/pA16/PAMinimumBiasBkg_AODPromptRecov1_285383_2CF47FC1-4DAE-E611-951D-02163E011B86.root'
-                           )
+   'file:/afs/cern.ch/user/k/kkuzn/work/pA16/PAMinimumBiasBkg_AODPromptRecov1_285383_2CF47FC1-4DAE-E611-951D-02163E011B86.root')
    )                               
 
 # configure modules via Global Tag --------------------------------------------------

@@ -16,5 +16,6 @@ uabasetree = cms.EDAnalyzer('UABaseTree',
 	"HLT_PARandom_v1",
 	"HLT_PAZeroBias_v1",
 	"HLT_PA*"	
-  )
+  ),
+  doDAvertex = cms.untracked.bool(True)
 )

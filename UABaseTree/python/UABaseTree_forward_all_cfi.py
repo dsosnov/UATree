@@ -13,7 +13,7 @@ from uabasetree_cfi import *
 # Tracking --------------------------------------------------------------
 #uabasetree.tracks   = cms.untracked.VInputTag("generalTracks","selectTracks")
 uabasetree.tracks    = cms.untracked.VInputTag("generalTracks")
-uabasetree.tracksPID = cms.untracked.VInputTag("TrackRefitter")
+#kk uabasetree.tracksPID = cms.untracked.VInputTag("TrackRefitter")
 uabasetree.vertices  = cms.untracked.VInputTag("offlinePrimaryVertices")
 if doMBTracking:
     uabasetree.tracks   = cms.untracked.VInputTag("allTracks","generalPlusMinBiasTracks","generalTracks","selectTracks")
