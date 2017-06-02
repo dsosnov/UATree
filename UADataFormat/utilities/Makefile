@@ -9,7 +9,7 @@ LINKD=$(INTERFACE)/LinkDef
 
 #HEAD=$(filter-out $(SRC)/$(LINKD) $(SRC)/uaplot_dict.h, $(wildcard $(SRC)/*.h))
 CODE=$(wildcard $(SRC)/*.cc)
-OBJS=$(subst $(SRC),$(OBJ),$(CODE:.cc=.o))
+OBJS=$(subst $(SRC),$(OBJ),$(CODE:.cc=.o) $(OBJ)/eventdict.o)
 
 all: $(OBJ) $(OBJ)/libUADataFormat.so 
 
