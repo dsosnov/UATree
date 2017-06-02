@@ -83,6 +83,10 @@
 #pragma link C++ class vector<MyD0>+; 
 #pragma link C++ class MyDstar+;
 #pragma link C++ class vector<MyDstar>+;
+#pragma link C++ class MyZDCDigi+;
+#pragma link C++ class vector<MyZDCDigi>+;
+#pragma link C++ class MyHFRecHit+;
+#pragma link C++ class vector<MyHFRecHit>+;
 
 #endif
 

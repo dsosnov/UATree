@@ -42,6 +42,8 @@ rootcint -f eventdict.cc -c -p \
    UATree/UADataFormat/interface/MySiPixelCluster.h \
    UATree/UADataFormat/interface/MyD0.h \
    UATree/UADataFormat/interface/MyDstar.h \
+   UATree/UADataFormat/interface/MyZDCDigi.h \
+   UATree/UADataFormat/interface/MyHFRecHit.h \
    UATree/UADataFormat/interface/LinkDef.h \
 
 mv interface/LinkDef.h interface/LinkDefh
