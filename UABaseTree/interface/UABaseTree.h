@@ -442,6 +442,9 @@ class UABaseTree : public EDAnalyzer {
       HLTPrescaleProvider hltPrescales;
       L1GtUtils L1GTUtility;
 
+      //for L1TrigOld
+      edm::EDGetTokenT<L1GlobalTriggerReadoutRecord> L1GTRRToken_;
+
       // --------------------   File & Tree   --------------------
       TFile*   fout;
       TTree*   tree;

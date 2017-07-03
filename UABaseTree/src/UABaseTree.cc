@@ -4,7 +4,7 @@
 
 UABaseTree::UABaseTree(const edm::ParameterSet& iConfig) : 
   hltPrescales(iConfig, consumesCollector(), *this),
-  L1GTUtility(iConfig, consumesCollector(), true, *this) 
+  L1GTUtility(iConfig, consumesCollector(), true, *this)
 {
 	std::cout << "constructor\n";
   //Getting all standard parameters
@@ -19,7 +19,7 @@ UABaseTree::UABaseTree(const edm::ParameterSet& iConfig) :
     } 
   consumes<trigger::TriggerEvent>(edm::InputTag("hltTriggerSummaryAOD"));
   consumes<edm::TriggerResults>(edm::InputTag("TriggerResults::HLT"));
-  consumes<L1GlobalTriggerReadoutRecord>(edm::InputTag("gtDigis")); 
+  L1GTRRToken_ = consumes<L1GlobalTriggerReadoutRecord>(edm::InputTag("gtDigis"));
 	std::cout << "1...2...\n";
 
   for(vector<InputTag>::iterator icoll = vertices_.begin() ; icoll!= vertices_.end() ; ++icoll) 
