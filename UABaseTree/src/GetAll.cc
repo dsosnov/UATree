@@ -6,11 +6,11 @@
 bool AllDebug = false;
 
 void UABaseTree::GetAll(const edm::Event& iEvent , const edm::EventSetup& iSetup){
-	std::cout << "1\n";
   // General Info
+  std::cout << "1\n";
                                     GetAllBeamSpots(iEvent);
 
-   std::cout << "1.1\n";
+  std::cout << "1.1\n";
   if(storeEvtId_)                   GetEvtId(iEvent);
   std::cout << "1.2\n";
   if(storeFwdGap_)                  GetFwdGap(iEvent); 
