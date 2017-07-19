@@ -13,3 +13,4 @@ UADataFormat/eventdict_rdict.pcm
 UADataFormat/src/eventdict.cc
 __init__.py
 test2016data.root
+.fuse_hidden*
