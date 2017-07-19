@@ -25,6 +25,8 @@ void UABaseTree::GetAll(const edm::Event& iEvent , const edm::EventSetup& iSetup
   //  if(storeL1Trig_)		    GetL1Trig(iEvent,iSetup);
   std::cout << "1.6\n";
   if(storeL1TrigOld_)		    GetL1TrigOld(iEvent);
+  std::cout << "1.6.5\n";
+  if(storeL1TrigRun2_)		    GetL1TrigRun2(iEvent,iSetup);
   std::cout << "2\n";
   if(storeMITEvtSel_)               GetMITEvtSel(iEvent);
 

@@ -19,6 +19,8 @@ rootcint -f eventdict.cc -c -p \
    UATree/UADataFormat/interface/MyHLTrig.h \
    UATree/UADataFormat/interface/MyL1Trig.h \
    UATree/UADataFormat/interface/MyL1TrigOld.h \
+   UATree/UADataFormat/interface/MyL1TrigRun2.h \
+   UATree/UADataFormat/interface/MyL1MenuRun2.h \
    UATree/UADataFormat/interface/MyMITEvtSel.h \
    UATree/UADataFormat/interface/MyPart.h \
    UATree/UADataFormat/interface/MySimVertex.h \
@@ -48,4 +50,8 @@ rootcint -f eventdict.cc -c -p \
 
 mv interface/LinkDef.h interface/LinkDefh
 mv eventdict.cc src/
+if [ -z "$CMSSW_BASE" ]; then
+cp eventdict_rdict.pcm lib/
+else
 cp eventdict_rdict.pcm $CMSSW_BASE/lib/$SCRAM_ARCH/
+fi

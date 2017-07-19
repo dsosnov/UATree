@@ -21,6 +21,7 @@ void UABaseTree::GetParameters(const edm::ParameterSet& iConfig){
    hlt_paths_      = iConfig.getUntrackedParameter<vector<string> >("hlt_paths",vector<string>());
    storeL1Trig_    = iConfig.getUntrackedParameter<bool>("storeL1Trig",false);
    storeL1TrigOld_ = iConfig.getUntrackedParameter<bool>("storeL1TrigOld",false);
+   storeL1TrigRun2_ = iConfig.getUntrackedParameter<bool>("storeL1TrigRun2",false);
    storeMITEvtSel_ = iConfig.getUntrackedParameter<bool>("storeMITEvtSel",false);
 
    tracks_         = iConfig.getUntrackedParameter<vector<InputTag> >("tracks",vector<InputTag>());

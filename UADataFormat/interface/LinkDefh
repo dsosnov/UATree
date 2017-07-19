@@ -37,6 +37,8 @@
 #pragma link C++ class vector<MyL1Trig>+;
 #pragma link C++ class MyL1TrigOld+;
 #pragma link C++ class vector<MyL1TrigOld>+;
+#pragma link C++ class MyL1TrigRun2+;
+#pragma link C++ class vector<MyL1TrigRun2>+;
 #pragma link C++ class MyMITEvtSel+;
 #pragma link C++ class vector<MyMITEvtSel>+;
 #pragma link C++ class MyPart+;
@@ -87,6 +89,26 @@
 #pragma link C++ class vector<MyZDCDigi>+;
 #pragma link C++ class MyHFRecHit+;
 #pragma link C++ class vector<MyHFRecHit>+;
+
+
+#pragma link C++ class MyL1MenuRun2+;
+#pragma link C++ class vector<MyL1MenuRun2>+;
+#pragma link C++ class MyL1TUtmCutValue+;
+#pragma link C++ class vector<MyL1TUtmCutValue>+;
+#pragma link C++ class MyL1TUtmCut+;
+#pragma link C++ class vector<MyL1TUtmCut>+;
+#pragma link C++ class MyL1TUtmObject+;
+#pragma link C++ class vector<MyL1TUtmObject>+;
+#pragma link C++ class MyL1TUtmBin+;
+#pragma link C++ class vector<MyL1TUtmBin>+;
+#pragma link C++ class MyL1TUtmScale+;
+#pragma link C++ class vector<MyL1TUtmScale>+;
+#pragma link C++ class MyL1TUtmCondition+;
+#pragma link C++ class vector<MyL1TUtmCondition>+;
+#pragma link C++ class MyL1TUtmAlgorithm+;
+#pragma link C++ class vector<MyL1TUtmAlgorithm>+;
+#pragma link C++ class MyL1TUtmTriggerMenu+;
+#pragma link C++ class vector<MyL1TUtmTriggerMenu>+;
 
 #endif
 

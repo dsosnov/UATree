@@ -20,6 +20,7 @@ UABaseTree::UABaseTree(const edm::ParameterSet& iConfig) :
   consumes<trigger::TriggerEvent>(edm::InputTag("hltTriggerSummaryAOD"));
   consumes<edm::TriggerResults>(edm::InputTag("TriggerResults::HLT"));
   L1GTRRToken_ = consumes<L1GlobalTriggerReadoutRecord>(edm::InputTag("gtDigis"));
+  L1R2_GABBCToken_ = consumes<GlobalAlgBlkBxCollection>(edm::InputTag("gtStage2Digis"));
 	std::cout << "1...2...\n";
 
   for(vector<InputTag>::iterator icoll = vertices_.begin() ; icoll!= vertices_.end() ; ++icoll) 
@@ -161,14 +162,17 @@ void UABaseTree::beginRun(edm::Run const & iRun, edm::EventSetup const& iSetup){
     L1GTUtility.retrieveL1GtTriggerMenuLite(iRun);
     // end JH
   }
+  if(storeL1TrigRun2_) {
+    StoreL1Menu(iRun, iSetup);
+  }
   
 }
 
 
 // ------------ method called once each job just after ending the event loop  ------------
 void UABaseTree::endJob(){
-   fout->Write() ;
-   fout->Close() ;
+  fout->Write() ;
+  fout->Close() ;
 }
 
 

@@ -84,7 +84,8 @@
 
 //L1
 #include "L1Trigger/GlobalTriggerAnalyzer/interface/L1GtUtils.h"
-
+#include "CondFormats/DataRecord/interface/L1TUtmTriggerMenuRcd.h"
+#include "CondFormats/L1TObjects/interface/L1TUtmTriggerMenu.h"
 
 // UATree Analysis class declaration
 
@@ -95,6 +96,8 @@
 #include "UATree/UADataFormat/interface/MyEvtId.h"
 #include "UATree/UADataFormat/interface/MyL1Trig.h"
 #include "UATree/UADataFormat/interface/MyL1TrigOld.h"
+#include "UATree/UADataFormat/interface/MyL1TrigRun2.h"
+#include "UATree/UADataFormat/interface/MyL1MenuRun2.h"
 #include "UATree/UADataFormat/interface/MyHLTrig.h"
 
 #include "UATree/UADataFormat/interface/MyGenKin.h"
@@ -169,10 +172,10 @@ class UABaseTree : public EDAnalyzer {
       ~UABaseTree();
 
    private:
-      virtual void beginJob() ;
-      virtual void beginRun(Run const &, EventSetup const&) ;
-      virtual void analyze(const Event&, const EventSetup&);
-      virtual void endJob() ;
+      virtual void beginJob() override;
+      virtual void beginRun(Run const &, EventSetup const&) override;
+      virtual void analyze(const Event&, const EventSetup&) override;
+      virtual void endJob() override;
 
       // --------------------   Getters   --------------------
       virtual void GetAll(          const Event& , const EventSetup& );
@@ -190,6 +193,8 @@ class UABaseTree : public EDAnalyzer {
       virtual void GetHLTrig(       const Event& , const EventSetup& );
       virtual void GetL1Trig(       const Event& , const EventSetup& );
       virtual void GetL1TrigOld(    const Event& );
+      virtual void GetL1TrigRun2(   const Event& , const EventSetup& );
+      virtual void StoreL1Menu( Run const &,       const EventSetup& );
       
       virtual void GetMITEvtSel(    const Event& );
       
@@ -295,6 +300,7 @@ class UABaseTree : public EDAnalyzer {
       vector<string>   hlt_paths_;
       Bool_t           storeL1Trig_;
       Bool_t           storeL1TrigOld_;
+      Bool_t           storeL1TrigRun2_;
       Bool_t           storeMITEvtSel_;
       vector<InputTag> tracks_ ;
       vector<InputTag> tracksPID_ ;
@@ -379,6 +385,8 @@ class UABaseTree : public EDAnalyzer {
 
       MyL1Trig                      L1Trig;
       MyL1TrigOld                   L1TrigOld; 
+      MyL1TrigRun2                  L1TrigRun2; 
+      MyL1MenuRun2                  L1MenuRun2; 
       MyHLTrig                      HLTrig;
       
       MyMITEvtSel                   MITEvtSel;
@@ -441,9 +449,13 @@ class UABaseTree : public EDAnalyzer {
       HLTConfigProvider hltConfig_;
       HLTPrescaleProvider hltPrescales;
       L1GtUtils L1GTUtility;
+  
 
-      //for L1TrigOld
+      // for L1TrigOld
       edm::EDGetTokenT<L1GlobalTriggerReadoutRecord> L1GTRRToken_;
+
+      // for L1TrigRun2
+      edm::EDGetTokenT<GlobalAlgBlkBxCollection> L1R2_GABBCToken_;
 
       // --------------------   File & Tree   --------------------
       TFile*   fout;

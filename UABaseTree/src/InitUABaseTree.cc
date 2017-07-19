@@ -22,7 +22,7 @@ void UABaseTree::Init(){
   }
 
   // General Event Info 
-  if(storeEvtId_)		     tree->Branch("evtId",&evtId);
+  if(storeEvtId_)                    tree->Branch("evtId",&evtId);
   if(storeFwdGap_)                   tree->Branch("fwdGap",&fwdGap);
   
   //MC Info
@@ -41,12 +41,16 @@ void UABaseTree::Init(){
   if(storePUSumInfo_)                tree->Branch("PUSumInfo",&pusuminfo); 
  
   //Triggers
-  if(hlt_paths_.size() > 0)	     tree->Branch("HLTrig",&HLTrig);
-  if(storeL1Trig_)		     tree->Branch("L1Trig",&L1Trig);
-  if(storeL1TrigOld_)		     tree->Branch("L1TrigOld",&L1TrigOld);
-  
+  if(hlt_paths_.size() > 0)          tree->Branch("HLTrig",&HLTrig);
+  if(storeL1Trig_)                   tree->Branch("L1Trig",&L1Trig);
+  if(storeL1TrigOld_)                tree->Branch("L1TrigOld",&L1TrigOld);
+  if(storeL1TrigRun2_){
+                                     tree->Branch("L1TrigRun2",&L1TrigRun2);
+                                     tree->Branch("L1MenuRun2",&L1MenuRun2);
+  }
+
   //MITEvtSel
-  if(storeMITEvtSel_)		     tree->Branch("MITEvtSel",&MITEvtSel);
+  if(storeMITEvtSel_)                tree->Branch("MITEvtSel",&MITEvtSel);
 
   //RecoTracks
   for(vector<InputTag>::iterator icoll = this->tracks_.begin() ; icoll!= this->tracks_.end() ; ++icoll){
