@@ -22,7 +22,7 @@ void UABaseTree::GetAll(const edm::Event& iEvent , const edm::EventSetup& iSetup
   if(storePUSumInfo_)               GetPUSumInfo(iEvent);
   std::cout << "1.5\n";
   if(hlt_paths_.size() > 0)         GetHLTrig(iEvent,iSetup);
-  //  if(storeL1Trig_)		    GetL1Trig(iEvent,iSetup,iRun);
+  //  if(storeL1Trig_)		    GetL1Trig(iEvent,iSetup);
   std::cout << "1.6\n";
   if(storeL1TrigOld_)		    GetL1TrigOld(iEvent);
   std::cout << "2\n";
