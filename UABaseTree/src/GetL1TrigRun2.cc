@@ -118,31 +118,6 @@ void UABaseTree::GetL1TrigRun2(const edm::Event& iEvent, const edm::EventSetup& 
         std::cout << "bit " << i << "(" << results_->maxPhysicsTriggers << ") : " << val << std::endl;
       }
     }
-  };
-
-  //OLD
-   // std::cout << "trying get trigger...\n";
-   // edm::Handle<L1GlobalTriggerReadoutRecord> L1GTRR;
-   // iEvent.getByToken(L1GTRRToken_, L1GTRR);
-
-   // std::cout << "::L1GTRR: " << *L1GTRR << std::endl;
-   // L1GTRR->print(std::cout);
-   
-   // int maxL1 = L1GTRR->decisionWord().size();
-   // std::cout << "            L1 size = " << maxL1 << std::endl;
-   // for (int i=0 ; i <maxL1 ; i++)
-   // {
-   //   if (GetL1TrigRun2Debug) cout << "PhysicsTriggerWord :" << i << " " << L1GTRR->decisionWord()[i] << endl;
-   //   L1TrigRun2.PhysTrigWord[i] = L1GTRR->decisionWord()[i];
-   // }
-
-   // int maxTT = L1GTRR->decisionWord().size();
-   // std::cout << "           TT size = " << maxL1 << std::endl;
-   // for (int i=0 ; i <maxTT  ; i++)
-   // {
-   //  if (GetL1TrigRun2Debug) cout << "technicalTriggerWord :" << i << " " << L1GTRR->technicalTriggerWord()[i] << endl;
-   //   L1TrigRun2.TechTrigWord[i] = L1GTRR->technicalTriggerWord()[i]; 
-   // }
-
+  }
 }
 
