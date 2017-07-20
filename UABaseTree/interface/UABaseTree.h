@@ -460,6 +460,7 @@ class UABaseTree : public EDAnalyzer {
       // --------------------   File & Tree   --------------------
       TFile*   fout;
       TTree*   tree;
+      TBranch* L1MenuRun2Branch;
 };
 
 #include "TemplateFunctions_jets.h"

@@ -46,7 +46,7 @@ void UABaseTree::Init(){
   if(storeL1TrigOld_)                tree->Branch("L1TrigOld",&L1TrigOld);
   if(storeL1TrigRun2_){
                                      tree->Branch("L1TrigRun2",&L1TrigRun2);
-                                     tree->Branch("L1MenuRun2",&L1MenuRun2);
+                                     L1MenuRun2Branch = tree->Branch("L1MenuRun2",&L1MenuRun2);
   }
 
   //MITEvtSel
