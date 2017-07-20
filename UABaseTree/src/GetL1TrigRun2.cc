@@ -37,32 +37,15 @@ void UABaseTree::StoreL1Menu(edm::Run const& iRun, edm::EventSetup const& iSetup
   boost::shared_ptr<L1TUtmTriggerMenu> ptr1( new L1TUtmTriggerMenu( *( menu.product() ) ) );
 
   MyL1TUtmTriggerMenu triggerMenu;
-  if( printL1TrigData ) cout << "L1TUtmTriggerMenu: " << endl;
   triggerMenu.name = ptr1->getName();
-  if( printL1TrigData ) cout << " name: " << ptr1->getName() << endl;
   triggerMenu.version = ptr1->getVersion();
-  if( printL1TrigData ) cout << " version: " << ptr1->getVersion() << endl;
   triggerMenu.comment = ptr1->getComment();
-  if( printL1TrigData ) cout << " comment: " << ptr1->getComment() << endl;
   triggerMenu.datetime = ptr1->getDatetime();
-  if( printL1TrigData ) cout << " date/time: " << ptr1->getDatetime() << endl;
   triggerMenu.uuid_firmware = ptr1->getFirmwareUuid();
-  if( printL1TrigData ) cout << " UUID: " << ptr1->getFirmwareUuid() << endl;
   triggerMenu.scale_set_name = ptr1->getScaleSetName();
-  if( printL1TrigData ) cout << " Scales: " << ptr1->getScaleSetName() << endl;
   triggerMenu.n_modules = ptr1->getNmodules();
-  if( printL1TrigData ) cout << " modules: " << ptr1->getNmodules() << endl;
 
-  if( printL1TrigData ) cout << " Algorithms[" << ptr1->getAlgorithmMap().size() << "]: " << endl;
   for( auto a : ptr1->getAlgorithmMap() ) {
-    if( printL1TrigData )
-      cout << "  " << a.first      << " " <<
-           a.second.getName()        << " " <<
-           a.second.getExpression()  << " " <<
-           a.second.getIndex()       << " " <<
-           a.second.getModuleId()    << " " <<
-           a.second.getModuleIndex() << " " <<
-           endl;
     MyL1TUtmAlgorithm algo{
       a.second.getName(),
       a.second.getExpression(),
@@ -74,13 +57,7 @@ void UABaseTree::StoreL1Menu(edm::Run const& iRun, edm::EventSetup const& iSetup
     algo.rpn_vector.insert( algo.rpn_vector.begin(), a.second.getRpnVector().begin(), a.second.getRpnVector().end() );
     triggerMenu.algorithm_map.insert( std::make_pair( a.first, algo ) ); // or triggerMenu.algorithm_map[a.first] = algo;
   }
-  if( printL1TrigData ) cout << " Conditions[" << ptr1->getConditionMap().size() << "]: " << endl;
   for( auto a : ptr1->getConditionMap() ) {
-    if( printL1TrigData ) 
-      cout << "  " << a.first << " " <<
-        a.second.getName() << " " <<
-        a.second.getType() << " " <<
-        endl;
     MyL1TUtmCondition condition{
       a.second.getName(),
       a.second.getType()
@@ -101,17 +78,7 @@ void UABaseTree::StoreL1Menu(edm::Run const& iRun, edm::EventSetup const& iSetup
     convertCuts(a.second.getCuts(), condition.cuts);
     triggerMenu.condition_map.insert( std::make_pair( a.first, condition ) );
   };
-  if( printL1TrigData ) cout << " ScaleMaps[" << ptr1->getScaleMap().size() << "]: " << endl;
   for( auto a : ptr1->getScaleMap() ){
-    if( printL1TrigData )
-      cout << "  " << a.first      << " " <<
-        a.second.getName()       << " " <<
-        a.second.getObjectType() << " " <<
-        a.second.getScaleType()  << " " <<
-        a.second.getMinimum()    << " " <<
-        a.second.getMaximum()    << " " <<
-        a.second.getStep()       << " " <<
-        a.second.getNbits()      << " " << endl;
     MyL1TUtmScale scale{
       a.second.getName(),
       a.second.getObjectType(),
@@ -126,6 +93,7 @@ void UABaseTree::StoreL1Menu(edm::Run const& iRun, edm::EventSetup const& iSetup
     triggerMenu.scale_map.insert( std::make_pair( a.first, scale ) ); // or triggerMenu.algorithm_map[a.first] = algo;
   }
   L1MenuRun2.menu.insert(std::make_pair(iRun.run(), triggerMenu)); // or maybe be better as L1MenuRun2.menu[iRun.run()]=triggerMenu; for rewrite existed
+  if(printL1TrigData) L1MenuRun2.Print();
 }
 
 void UABaseTree::GetL1TrigRun2(const edm::Event& iEvent, const edm::EventSetup& iSetup)

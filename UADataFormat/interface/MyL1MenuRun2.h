@@ -2,6 +2,7 @@
 #define __MyL1MenuRun2_H__
 
 #include "TObject.h"
+#include <iostream>
 #include <map>
 
 struct MyL1TUtmCutValue {
@@ -69,10 +70,11 @@ struct MyL1TUtmTriggerMenu {
   std::string datetime;                                  /**< datetime of the menu */
   std::string uuid_firmware;                             /**< uuid of firmware */
   std::string scale_set_name;                            /**< scale set name */
-  unsigned int n_modules;                                /**< number of uGT boards for the menu */    
+  unsigned int n_modules;                                /**< number of uGT boards for the menu */
+  void Print();
 };
 
-class MyL1MenuRun2 : public TObject {
+class MyL1MenuRun2 {
 
 public :
   MyL1MenuRun2();
