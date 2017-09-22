@@ -4,7 +4,7 @@
 
 import FWCore.ParameterSet.Config as cms
 
-from UABaseTree_forward_cfi import *
+from UABaseTree_forward_all_cfi import *
 
 # Monte Carlo specific configuration
 # All MC events are stored.
