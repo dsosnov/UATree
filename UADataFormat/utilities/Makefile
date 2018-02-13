@@ -2,7 +2,7 @@ SRC=../src
 INTERFACE=../interface
 OBJ=../lib
 
-CXXFLAGS+=$(shell root-config --cflags) -Wall -I../../../ -I$(SRC) -I$(INTERFACE) -ggdb3 -fPIC
+CXXFLAGS+=$(shell root-config --cflags) -Wall -I../../../ -I$(SRC) -I$(INTERFACE) -ggdb3 -fPIC -O2
 LDFLAGS+=$(shell root-config --glibs)  -ggdb3 
 
 LINKD=$(INTERFACE)/LinkDef
