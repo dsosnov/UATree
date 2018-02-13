@@ -72,9 +72,9 @@ if isMonteCarlo:
    #process.castorDigis.InputLabel = 'source'
    #process.load("RecoLocalCalo.Castor.CastorCellReco_cfi")    #-- redo cell
    #process.load("RecoLocalCalo.Castor.CastorTowerReco_cfi")   #-- redo tower
-   #process.load("RecoJets.JetProducers.ak7CastorJets_cfi")    #-- redo jet
-   #process.load("RecoJets.JetProducers.ak7CastorJetID_cfi")   #-- redo jetid
-   #process.path = cms.Sequence(process.path  * process.castorDigis*process.castorreco*process.CastorCellReco*process.CastorTowerReco*process.ak7BasicJets*process.ak7CastorJetID)
+   #process.load("RecoJets.JetProducers.ak8CastorJets_cfi")    #-- redo jet
+   #process.load("RecoJets.JetProducers.ak8CastorJetID_cfi")   #-- redo jetid
+   #process.path = cms.Sequence(process.path  * process.castorDigis*process.castorreco*process.CastorCellReco*process.CastorTowerReco*process.ak8BasicJets*process.ak8CastorJetID)
 
 # --------------------------- Write CMS data -------------------------------
 

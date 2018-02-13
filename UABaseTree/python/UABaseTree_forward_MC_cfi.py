@@ -32,25 +32,25 @@ if storeJets:
     # stores tracks used to construct the PFJet in the PFJet.vtrack member. Only if the RefTracks are present. 
     uabasetree.storeTracksInPFJets  = cms.untracked.bool(False)
     uabasetree.vpfjets   = cms.untracked.VPSet(
-	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak5PFJets"),
-		      corrections = cms.untracked.vstring('ak5PFL2L3') ),
-	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak7PFJets"),
-		      corrections = cms.untracked.vstring('ak7PFL2L3') ),
+	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak4PFJets"),
+		      corrections = cms.untracked.vstring('ak4PFL2L3') ),
+	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak8PFJets"),
+		      corrections = cms.untracked.vstring('ak8PFL2L3') ),
 	    )
     uabasetree.vcalojets = cms.untracked.VPSet(
-	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak5CaloJets"),
-	              calojetid   = cms.untracked.InputTag("ak5JetID"),
-		      corrections = cms.untracked.vstring('ak5CaloL2L3','ak5CaloL2L3Residual') ),
-	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak7CaloJets"),
-	              calojetid   = cms.untracked.InputTag("ak7JetID"),
-		      corrections = cms.untracked.vstring('ak7CaloL2L3','ak7CaloL2L3Residual') ),
+	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak4CaloJets"),
+	              calojetid   = cms.untracked.InputTag("ak4JetID"),
+		      corrections = cms.untracked.vstring('ak4CaloL2L3','ak4CaloL2L3Residual') ),
+	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak8CaloJets"),
+	              calojetid   = cms.untracked.InputTag("ak8JetID"),
+		      corrections = cms.untracked.vstring('ak8CaloL2L3','ak8CaloL2L3Residual') ),
 	    )
-    uabasetree.genjets = cms.untracked.VInputTag("ak5GenJets","ak7GenJets")
+    uabasetree.genjets = cms.untracked.VInputTag("ak4GenJets","ak8GenJets")
 
 # Basic jets:
 uabasetree.basicjets = cms.untracked.VInputTag()
 #uabasetree.basicjets.insert(0,"ueSisCone5ChgGenJet500")
-#uabasetree.basicjets.insert(0,"ueAk5ChgGenJet500")
+#uabasetree.basicjets.insert(0,"ueAk4ChgGenJet500")
 
 # Track jets
 uabasetree.trackjets = cms.untracked.VInputTag()

@@ -117,9 +117,9 @@ if doMBTracking:
    #process.castorDigis.InputLabel = 'source'
    #process.load("RecoLocalCalo.Castor.CastorCellReco_cfi")    #-- redo cell
    #process.load("RecoLocalCalo.Castor.CastorTowerReco_cfi")   #-- redo tower
-   #process.load("RecoJets.JetProducers.ak7CastorJets_cfi")    #-- redo jet
-   #process.load("RecoJets.JetProducers.ak7CastorJetID_cfi")   #-- redo jetid
-   #process.reco_sequence = cms.Sequence(process.reco_sequence  * process.castorDigis*process.castorreco*process.CastorCellReco*process.CastorTowerReco*process.ak7BasicJets*process.ak7CastorJetID)
+   #process.load("RecoJets.JetProducers.ak8CastorJets_cfi")    #-- redo jet
+   #process.load("RecoJets.JetProducers.ak8CastorJetID_cfi")   #-- redo jetid
+   #process.reco_sequence = cms.Sequence(process.reco_sequence  * process.castorDigis*process.castorreco*process.CastorCellReco*process.CastorTowerReco*process.ak8BasicJets*process.ak8CastorJetID)
 
 #process.load('UATree.UABaseTree.UEJetChecker_cfi')
 #process.reco_sequence = cms.Sequence(process.reco_sequence * process.uejetchecker)

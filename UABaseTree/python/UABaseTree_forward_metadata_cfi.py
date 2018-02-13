@@ -35,34 +35,34 @@ if useMITFilter:
 # Jet Collections -------------------------------------------------------------------
 
 # each VPSet of vpfjets or vcalojets needs to contain PSets with:
-# jetcoll : not corrected collection. Can specifiy tree branch name in label using seperator # : "label#branchname:instance:process". Example : "ak5PFJets#jets". NOT NECESSARY !
+# jetcoll : not corrected collection. Can specifiy tree branch name in label using seperator # : "label#branchname:instance:process". Example : "ak4PFJets#jets". NOT NECESSARY !
 # corrections : name of corrections in vector. Need to provide essource for it in python/UABaseTree_jets_cfi.py . Can specifiy corr name/key stored in Jet.mapjet using seperator # :
-#               "corr#mapkey". Example : "ak5PFL1Fastjet#fastjet", but of course "ak5PFL1Fastjet" works too, the mapkey will then be the correction name, here "ak5PFL1Fastjet"
-# dijetcoll : if you want to have the Dijet class done for each jetcoll. Need to provide the exact same string as the correction, #mapkey included. Example : "ak5PFL1Fastjet#fastjet"
+#               "corr#mapkey". Example : "ak4PFL1Fastjet#fastjet", but of course "ak4PFL1Fastjet" works too, the mapkey will then be the correction name, here "ak4PFL1Fastjet"
+# dijetcoll : if you want to have the Dijet class done for each jetcoll. Need to provide the exact same string as the correction, #mapkey included. Example : "ak4PFL1Fastjet#fastjet"
 
 if storeJets:
     uabasetree.storeTracksInPFJets  = cms.untracked.bool(False)
     uabasetree.vpfjets   = cms.untracked.VPSet(
-	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak5PFJets"),
-		      corrections = cms.untracked.vstring('ak5PFL2L3','ak5PFL2L3Residual') ),
-	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak7PFJets"),
-		      corrections = cms.untracked.vstring('ak7PFL2L3','ak7PFL2L3Residual') ),
+	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak4PFJets"),
+		      corrections = cms.untracked.vstring('ak4PFL2L3','ak4PFL2L3Residual') ),
+	    cms.PSet( jetcoll    = cms.untracked.InputTag("ak8PFJets"),
+		      corrections = cms.untracked.vstring('ak8PFL2L3','ak8PFL2L3Residual') ),
 	    )
     uabasetree.vcalojets = cms.untracked.VPSet(
-	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak5CaloJets"),
-	              calojetid   = cms.untracked.InputTag("ak5JetID"),
-		      corrections = cms.untracked.vstring('ak5CaloL2L3','ak5CaloL2L3Residual') ),
-	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak7CaloJets"),
-	              calojetid   = cms.untracked.InputTag("ak7JetID"),
-		      corrections = cms.untracked.vstring('ak7CaloL2L3','ak7CaloL2L3Residual') ),
+	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak4CaloJets"),
+	              calojetid   = cms.untracked.InputTag("ak4JetID"),
+		      corrections = cms.untracked.vstring('ak4CaloL2L3','ak4CaloL2L3Residual') ),
+	    cms.PSet( jetcoll     = cms.untracked.InputTag("ak8CaloJets"),
+	              calojetid   = cms.untracked.InputTag("ak8JetID"),
+		      corrections = cms.untracked.vstring('ak8CaloL2L3','ak8CaloL2L3Residual') ),
 	    )
 					      
 # Basic jets:
-#uabasetree.basicjets = cms.untracked.VInputTag("ueSisCone5TracksJet500","ueAk5TracksJet500")
+#uabasetree.basicjets = cms.untracked.VInputTag("ueSisCone5TracksJet500","ueAk4TracksJet500")
 uabasetree.basicjets = cms.untracked.VInputTag()
 
 # Track jets
-#uabasetree.trackjets = cms.untracked.VInputTag("ueSisCone5TracksJet500#TrackJetSisCone","ueAk5TracksJet500#TrackJetAntiKt")
+#uabasetree.trackjets = cms.untracked.VInputTag("ueSisCone5TracksJet500#TrackJetSisCone","ueAk4TracksJet500#TrackJetAntiKt")
 uabasetree.trackjets = cms.untracked.VInputTag()
 uabasetree.vtxcoll_for_trackjets = cms.untracked.string("offlinePrimaryVertices")
 
@@ -73,8 +73,8 @@ if storeMET:
 # CASTOR -----------------------------------------------------------------------------
 if storeCastor:
     uabasetree.castorrechits = cms.untracked.InputTag('castorreco')
-    uabasetree.basicjets     = cms.untracked.InputTag('ak7BasicJets')
-    uabasetree.castorjetid   = cms.untracked.InputTag('ak7CastorJetID')
+    uabasetree.basicjets     = cms.untracked.InputTag('ak8BasicJets')
+    uabasetree.castorjetid   = cms.untracked.InputTag('ak8CastorJetID')
     #uabasetree.castordigis   = cms.untracked.InputTag('castorDigis')
 
 # PF candidates
