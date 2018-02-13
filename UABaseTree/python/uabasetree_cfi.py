@@ -8,7 +8,7 @@ import FWCore.ParameterSet.Config as cms
 uabasetree = cms.EDAnalyzer('UABaseTree',
   filterEvents = cms.untracked.bool(False),		#filterEvents for data. Switched Off for MC
   storeEvtId = cms.untracked.bool(True),		
-  storeFwdGap = cms.untracked.bool(False),
+  storeFwdGap = cms.untracked.bool(True),
   storeL1Trig = cms.untracked.bool(False),
   storeL1TrigOld = cms.untracked.bool(False),		#old simple version. Deprecated.
   storeL1TrigRun2 = cms.untracked.bool(True),		#New version for Run2
