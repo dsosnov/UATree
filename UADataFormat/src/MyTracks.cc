@@ -1,5 +1,5 @@
 #include "UATree/UADataFormat/interface/MyTracks.h"
-#
+#include <map>
 
 ClassImp(MyTracks)
 
@@ -13,10 +13,10 @@ void MyTracks::Print(){
 
   cout << "[MyTracks::Print()]" << endl;
 
-
+  std::map<int, string> trackType = {{0,"loose"},{1,"tight"},{2,"highPurity"},{3,"confirmed"},{4,"goodIterative"}};
   cout << "quality  ( enum , bool ) :" << endl;
   for(int i=0 ; i < 5 ; ++i)
-    cout <<"  " << i << "  " << quality[i] << endl;
+    cout <<"  " << trackType.at(i) << "  " << quality[i] << endl;
     
   cout << "trackAlgo         : " << trackAlgo           << endl;
   cout << "nhit              : " << nhit                << endl;
