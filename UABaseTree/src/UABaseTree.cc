@@ -173,6 +173,7 @@ void UABaseTree::beginRun(edm::Run const & iRun, edm::EventSetup const& iSetup){
 
 // ------------ method called once each job just after ending the event loop  ------------
 void UABaseTree::endJob(){
+  evtIdBranch->Print();
   
   fout->Write() ;
   fout->Close() ;

@@ -22,7 +22,7 @@ void UABaseTree::Init(){
   }
 
   // General Event Info 
-  if(storeEvtId_)                    tree->Branch("evtId",&evtId);
+  if(storeEvtId_)                    evtIdBranch = tree->Branch("evtId",&evtId);
   if(storeFwdGap_)                   tree->Branch("fwdGap",&fwdGap);
   
   //MC Info
