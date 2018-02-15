@@ -1,6 +1,6 @@
 #include "UATree/UABaseTree/interface/UABaseTree.h"
 
-Bool_t FilterEventsDebug = true;
+Bool_t FilterEventsDebug = false;
 
 Bool_t UABaseTree::FilterEvents(){
   

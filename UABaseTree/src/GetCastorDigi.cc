@@ -14,7 +14,7 @@
 
 #include "UATree/UABaseTree/interface/UABaseTree.h"
 
-bool CastorDigiDebug = true;
+bool CastorDigiDebug = false;
 
 void UABaseTree::GetCastorDigi(const edm::Event& iEvent ,  const edm::EventSetup& iSetup) {
     

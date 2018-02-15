@@ -12,7 +12,7 @@
 // UABaseTree Analysis class decleration
 #include "UATree/UABaseTree/interface/UABaseTree.h"
 
-bool GetL1TrigRun2Debug = true;
+bool GetL1TrigRun2Debug = false;
 
 void convertCuts (std::vector<L1TUtmCut> const& cIn, std::vector<MyL1TUtmCut> &cOut){
   for (auto i: cIn){
@@ -107,17 +107,22 @@ void UABaseTree::GetL1TrigRun2(const edm::Event& iEvent, const edm::EventSetup& 
   L1TrigRun2.triggerResults.clear();
   if( ugtBXhandle.isValid() and not ugtBXhandle->isEmpty( 0 ) ) {
     psColumn = ugtBXhandle->at( 0, 0 ).getPreScColumn();
-    std::cout << "prescale column: " << psColumn << std::endl;
+    if (GetL1TrigRun2Debug) std::cout << "prescale column: " << psColumn << std::endl;
     results_ = & ugtBXhandle->at( 0, 0 );
     //http://cmslxr.fnal.gov/source/DataFormats/L1TGlobal/interface/GlobalAlgBlk.h?v=CMSSW_8_0_24
     L1TrigRun2.triggerResults.resize(results_->maxPhysicsTriggers, 0);
     for( unsigned int i = 0; i < results_->maxPhysicsTriggers; i++ ) {
       bool val = results_->getAlgoDecisionFinal( i );
       if( val ){
-        L1TrigRun2.triggerResults.push_back(val);
-        std::cout << "bit " << i << "(" << results_->maxPhysicsTriggers << ") : " << val << std::endl;
+        L1TrigRun2.triggerResults[i] = val;
+        if (GetL1TrigRun2Debug)
+          std::cout << "bit " << i << "(" << results_->maxPhysicsTriggers << ") : " << val << std::endl;
       }
     }
+  }
+  if (GetL1TrigRun2Debug) {
+    std::cout << ">> L1 Trigger results: \n";
+    for (auto t: L1TrigRun2.triggerResults) std::cout << t << " "; std::cout << std::endl;
   }
 }
 

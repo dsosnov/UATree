@@ -15,7 +15,7 @@
 // UABaseTree Analysis class declaration
 #include "UATree/UABaseTree/interface/UABaseTree.h"
 
-bool GenPartDebug = false ;
+bool GenPartDebug = false;
 
 void UABaseTree::GetGenPart(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
@@ -102,7 +102,7 @@ void UABaseTree::GetGenPart(const edm::Event& iEvent, const edm::EventSetup& iSe
 
     // Store processID to myGenPart
     mygenpart.processID = processID;
-    cout << "#GetGenPart: processID = " << processID << endl;
+    // cout << "#GetGenPart: processID = " << processID << endl;
 
     Bool_t store = true;
     if( onlyStableGenPart_  && st!=1)                      store = false;
