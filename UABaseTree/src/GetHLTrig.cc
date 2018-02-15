@@ -40,7 +40,7 @@ void UABaseTree::GetHLTrig(const edm::Event& iEvent, const edm::EventSetup& iSet
   if(HLTDebug){
     cout << "Printing list of HLT paths present in the file ==========>" << endl;
     for(unsigned i=0 ; i < trigNames.size() ; ++i)
-      cout << "    " << trigNames.triggerName(i) << endl;  
+      cout << "    " << trigNames.triggerName(i) << endl;
   }
   
   //https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideHighLevelTrigger
@@ -51,19 +51,12 @@ void UABaseTree::GetHLTrig(const edm::Event& iEvent, const edm::EventSetup& iSet
   for(vector<string>::iterator hlt_name = hlt_paths_.begin(); hlt_name != hlt_paths_.end(); hlt_name++) {
     HLTrig.HLTmap[*hlt_name]= hasFired(*hlt_name,trigNames,*trigResults);
 
-    std::cout << "HLT6\n";
-    std::cout << *hlt_name << std::endl;
-
-
     // stolen from https://cmssdt.cern.ch/SDT/doxygen/CMSSW_8_0_24/doc/html/d2/dc0/HLTEventAnalyzerAOD_8cc_source.html
     const unsigned int triggerIndex(hltConfig_.triggerIndex(*hlt_name));
-    std::cout << "HLT6.1\n";
+//     std::cout << "HLT6.1\n";
     //const std::pair<int,int> prescales(hltPrescales.prescaleValues(iEvent,iSetup,*hlt_name));
     //std::cout << "HLT6.2\n";
     const std::pair<std::vector<std::pair<std::string,int> >,int> prescalesInDetail(hltPrescales.prescaleValuesInDetail(iEvent,iSetup,*hlt_name));
-
-    std::cout << "HLT7\n";
-
 
     //std::pair<int,int> prescaleValues(iEvent, iSetup, *hlt_name);
     HLTrig.HLTprescale[*hlt_name]= hltPrescales.prescaleValue(iEvent,iSetup,*hlt_name);
@@ -80,8 +73,8 @@ void UABaseTree::GetHLTrig(const edm::Event& iEvent, const edm::EventSetup& iSet
       179        << endl;
       180
       */
-    std::cout << "HLT8\n";
     //    HLTrig.HLTprescale[*hlt_name]= hltConfig.prescaleValue(iEvent,iSetup,*hlt_name);
+    if(HLTDebug) std::cout << *hlt_name << " " << HLTrig.HLTmap[*hlt_name] << " " << HLTrig.HLTprescale[*hlt_name] << std::endl;
   }
 
   if(HLTDebug) HLTrig.Print();
@@ -95,7 +88,7 @@ bool UABaseTree::hasFired(const std::string& triggerName, const edm::TriggerName
   unsigned index = trigNames.triggerIndex(triggerName);
 
   if (index>=trigNames.size()) {
-    if(HLTDebug) cout<<"[UABaseTree::hasFired] ERROR: unknown trigger name"<<triggerName<<endl;
+    if(HLTDebug) cout<<"[UABaseTree::hasFired] ERROR: unknown trigger name "<<triggerName<<endl;
     return false;
   }
 
