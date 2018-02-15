@@ -13,46 +13,46 @@
 
 Bool_t CaloTowerDebug = false;
 
-void UABaseTree::GetCaloTower(const edm::Event& iEvent){
+void UABaseTree::GetCaloTower(const edm::Event &iEvent)
+{
 
-   caloTowers.clear();
+  caloTowers.clear();
 
-   Handle<CaloTowerCollection> CaloTowers;
-   iEvent.getByLabel(calotowercoll_,CaloTowers);
+  Handle<CaloTowerCollection> CaloTowers;
+  iEvent.getByToken(CaloTowerToken_,CaloTowers);            //iEvent.getByLabel(pfcandcoll_,CaloTowers);
+  caloTowers.assign(CaloTowers->size(), MyCaloTower());
 
-   caloTowers.assign( CaloTowers->size() , MyCaloTower() );
+  Int_t i = 0;
+  for (CaloTowerCollection::const_iterator iCT = CaloTowers->begin() ; iCT != CaloTowers->end() ; ++iCT, ++i) {
 
-   Int_t i = 0;
-   for (CaloTowerCollection::const_iterator iCT = CaloTowers->begin() ; iCT != CaloTowers->end() ; ++iCT , ++i) {
-     
-     caloTowers[i].SetPxPyPzE(iCT->px(), iCT->py(), iCT->pz(), iCT->energy());
-     caloTowers[i].emEnergy  = iCT->emEnergy();
-     caloTowers[i].hadEnergy = iCT->hadEnergy();
+    caloTowers[i].SetPxPyPzE(iCT->px(), iCT->py(), iCT->pz(), iCT->energy());
+    caloTowers[i].emEnergy  = iCT->emEnergy();
+    caloTowers[i].hadEnergy = iCT->hadEnergy();
 
-     //-- loop over CaloTower constituents
-     for(size_t iconst = 0; iconst < iCT->constituentsSize(); iconst++){
-     
-       DetId detId = iCT->constituent(iconst);
+    //-- loop over CaloTower constituents
+    for (size_t iconst = 0; iconst < iCT->constituentsSize(); iconst++) {
 
-       if(detId.det()==DetId::Ecal){
-         EcalSubdetector ecalSubDet = (EcalSubdetector)detId.subdetId();
-	 if(ecalSubDet == EcalBarrel) caloTowers[i].hasEB = true;
-         else if(ecalSubDet == EcalEndcap) caloTowers[i].hasEE = true;
-       }
+      DetId detId = iCT->constituent(iconst);
 
-       else if(detId.det()==DetId::Hcal){
-	 HcalDetId hcalDetId(detId);
-	 if(hcalDetId.subdet()==HcalBarrel) caloTowers[i].hasHB = true;
-	 else if(hcalDetId.subdet()==HcalEndcap) caloTowers[i].hasHE = true;
-	 else if(hcalDetId.subdet()==HcalForward) caloTowers[i].hasHF = true;
-       } 
+      if (detId.det() == DetId::Ecal) {
+        EcalSubdetector ecalSubDet = (EcalSubdetector)detId.subdetId();
+        if (ecalSubDet == EcalBarrel) caloTowers[i].hasEB = true;
+        else if (ecalSubDet == EcalEndcap) caloTowers[i].hasEE = true;
+      }
 
-     }
+      else if (detId.det() == DetId::Hcal) {
+        HcalDetId hcalDetId(detId);
+        if (hcalDetId.subdet() == HcalBarrel) caloTowers[i].hasHB = true;
+        else if (hcalDetId.subdet() == HcalEndcap) caloTowers[i].hasHE = true;
+        else if (hcalDetId.subdet() == HcalForward) caloTowers[i].hasHF = true;
+      }
 
-     caloTowers[i].zside = iCT->zside();
+    }
 
-     if(CaloTowerDebug) caloTowers[i].Print();
+    caloTowers[i].zside = iCT->zside();
 
-   } // end for CaloTowerCollection 
+    if (CaloTowerDebug) caloTowers[i].Print();
+
+  } // end for CaloTowerCollection
 
 }
