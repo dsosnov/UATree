@@ -19,8 +19,10 @@ UABaseTree::UABaseTree(const edm::ParameterSet& iConfig) :
     } 
   consumes<trigger::TriggerEvent>(edm::InputTag("hltTriggerSummaryAOD"));
   consumes<edm::TriggerResults>(edm::InputTag("TriggerResults::HLT"));
+  CaloTowerToken_ = consumes<CaloTowerCollection>(calotower_);
   L1GTRRToken_ = consumes<L1GlobalTriggerReadoutRecord>(edm::InputTag("gtDigis"));
   L1R2_GABBCToken_ = consumes<GlobalAlgBlkBxCollection>(edm::InputTag("gtStage2Digis"));
+  for (auto i: pfcands_) PFCandidateTokens_[i.label()] = consumes<PFCandidateCollection>(i);
 	std::cout << "1...2...\n";
 
   for(vector<InputTag>::iterator icoll = vertices_.begin() ; icoll!= vertices_.end() ; ++icoll) 

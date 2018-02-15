@@ -8,17 +8,12 @@
 
 Bool_t PFCandDebug = false;
 
-void UABaseTree::GetRecoPFCand(const edm::Event& iEvent , const InputTag& pfcandcoll_ , vector<MyPFCand>& PFCandVector){
+void UABaseTree::GetRecoPFCand(const edm::Event& iEvent , const edm::EDGetTokenT<PFCandidateCollection>& PFCandidateToken_ , vector<MyPFCand>& PFCandVector){
 
    PFCandVector.clear();
 
    Handle<PFCandidateCollection> PFCands;
-   try {
-     iEvent.getByLabel(pfcandcoll_,PFCands);
-   }
-   catch ( ... ) {
-     cout << "[UABaseTree::GetRecoPFCand] Can't find the collection " << pfcandcoll_ << endl;
-   }
+   iEvent.getByToken(PFCandidateToken_, PFCands);
    
    PFCandVector.assign( PFCands->size() , MyPFCand() );
 
@@ -39,6 +34,5 @@ void UABaseTree::GetRecoPFCand(const edm::Event& iEvent , const InputTag& pfcand
 
 
 void UABaseTree::GetAllPFCands( const edm::Event& iEvent ){
-  for(vector<InputTag>::iterator icoll = pfcands_.begin() ; icoll!= pfcands_.end() ; ++icoll)
-    this->GetRecoPFCand(iEvent , *icoll , allPFCands[icoll->label()] );
+  for (auto i: pfcands_) this->GetRecoPFCand(iEvent , PFCandidateTokens_.at(i.label()), allPFCands[i.label()]);
 }

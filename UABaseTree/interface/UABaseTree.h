@@ -246,7 +246,7 @@ class UABaseTree : public EDAnalyzer {
       virtual void GetAllElectrons( const Event& ); 
       virtual void GetRecoMuon(     const Event& , const InputTag& , vector<MyMuon>& ); 
       virtual void GetAllMuons(     const Event& ); 
-      virtual void GetRecoPFCand(   const Event& , const InputTag& , vector<MyPFCand>& ); 
+      virtual void GetRecoPFCand(   const Event& , const edm::EDGetTokenT<PFCandidateCollection>&, vector<MyPFCand>& );
       virtual void GetAllPFCands(   const Event& ); 
       
       virtual void GetMET(          const Event& , const string& , vector<MyMet>& );
@@ -316,7 +316,6 @@ class UABaseTree : public EDAnalyzer {
       vector<InputTag> muons_;
       vector<InputTag> pfcands_;
       vector<InputTag> mets_;
-      InputTag         calotowercoll_;
       Bool_t           storeCaloObjects_;
       
       InputTag         kshorts_ ; 
@@ -456,6 +455,14 @@ class UABaseTree : public EDAnalyzer {
 
       // for L1TrigRun2
       edm::EDGetTokenT<GlobalAlgBlkBxCollection> L1R2_GABBCToken_;
+
+      // for CaloTower
+      edm::EDGetTokenT<CaloTowerCollection> CaloTowerToken_;
+
+      // for ParticleFlow
+      map<string, edm::EDGetTokenT<PFCandidateCollection>> PFCandidateTokens_;
+
+
 
       // --------------------   File & Tree   --------------------
       TFile*   fout;

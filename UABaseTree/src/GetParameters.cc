@@ -50,7 +50,6 @@ void UABaseTree::GetParameters(const edm::ParameterSet& iConfig){
    
    mets_           = iConfig.getUntrackedParameter<vector<InputTag> >("mets",vector<InputTag>());
 
-   calotowercoll_     = iConfig.getUntrackedParameter<InputTag>("calotowercoll",InputTag("towerMaker"));
    storeCaloObjects_  = iConfig.getUntrackedParameter<bool>("storeCaloObjects",false);
    
    // FSC
