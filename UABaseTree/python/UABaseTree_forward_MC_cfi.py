@@ -21,7 +21,7 @@ uabasetree.onlyStableGenPart             = cms.untracked.bool(True)
 # Saves only charged particles in genPart
 uabasetree.onlyChargedGenPart            = cms.untracked.bool(False)
 uabasetree.storePUSumInfo                = cms.untracked.bool(True) 
-uabasetree.hlt_paths = cms.untracked.vstring()
+#uabasetree.hlt_paths = cms.untracked.vstring() #May be needed!!
 
 # Tracking --------------------------------------------------------------
 if not doMBTracking:
